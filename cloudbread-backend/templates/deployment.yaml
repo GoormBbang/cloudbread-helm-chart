@@ -20,6 +20,12 @@ spec:
         - name: cloudbread-backend
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+            - name: TZ
+              value: Asia/Seoul
+            - name: JAVA_TOOL_OPTIONS
+              value: "-Duser.timezone=Asia/Seoul"
+
           ports:
             - containerPort: {{ .Values.containerPort }}
           envFrom:
