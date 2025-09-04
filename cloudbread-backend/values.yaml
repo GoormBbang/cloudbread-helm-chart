@@ -1,0 +1,43 @@
+image:
+  repository: CHANGE_ME_REGISTRY/cloudbread-backend
+  tag: "latest"
+  pullPolicy: IfNotPresent
+
+replicaCount: 1
+strategy: Recreate
+revisionHistoryLimit: 1
+containerPort: 8080
+
+envFromSecretName: app-env
+
+pvc:
+  enabled: true
+  claimName: uploads-pvc
+  storage: 20Gi
+  mountPath: /data/uploads
+
+service:
+  type: ClusterIP
+  port: 80
+  targetPort: 8080
+
+ingress:
+  enabled: true
+  className: nginx
+  host: cloudbread.133.186.213.185.nip.io
+  annotations:
+    nginx.ingress.kubernetes.io/proxy-body-size: "50m"
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "3600"
+    nginx.ingress.kubernetes.io/proxy-send-timeout: "3600"
+    nginx.ingress.kubernetes.io/proxy-connect-timeout: "120"
+  paths:
+    - path: /api
+      pathType: Prefix
+    - path: /uploads
+      pathType: Prefix
+
+probes:
+  readinessPath: /actuator/health/readiness
+  livenessPath: /actuator/health/liveness
+  readinessInitialDelay: 10
+  livenessInitialDelay: 30
