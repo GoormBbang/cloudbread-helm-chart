@@ -20,7 +20,7 @@ spec:
                 name: cloudbread-backend-svc
                 port:
                   number: {{ $.Values.service.port }}
-#           {{- end }}
+          {{- end }}
 #   {{- if .Values.ingress.tls }}
 #   tls:
 #     {{- toYaml .Values.ingress.tls | nindent 2 }}
