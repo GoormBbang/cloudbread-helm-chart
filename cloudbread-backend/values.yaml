@@ -37,10 +37,10 @@ ingress:
       pathType: Prefix
     - path: /uploads
       pathType: Prefix
-  tls:                                         # ★ TLS 섹션 추가
-    - hosts:
-      - cloudbread.133.186.213.185.nip.io
-      secretName: cloudbread-backend-tls       # cert-manager가 만들어 줄 Secret 이름
+  # tls:                                         # ★ TLS 섹션 추가
+  #   - hosts:
+  #     - cloudbread.133.186.213.185.nip.io
+  #     secretName: cloudbread-backend-tls       # cert-manager가 만들어 줄 Secret 이름
 probes:
   readinessPath: /actuator/health/readiness
   livenessPath: /actuator/health/liveness
