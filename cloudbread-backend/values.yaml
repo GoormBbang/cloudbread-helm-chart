@@ -26,8 +26,8 @@ ingress:
   className: nginx
   host: cloudbread.133.186.213.185.nip.io
   annotations:
-    cert-manager.io/cluster-issuer: "letsencrypt-http01"  # ★ 방금 만든 ClusterIssuer
-    nginx.ingress.kubernetes.io/ssl-redirect: "true"      # ★ HTTP→HTTPS 자동 리다이렉트
+    # cert-manager.io/cluster-issuer: "letsencrypt-http01"  # ★ 방금 만든 ClusterIssuer
+    # nginx.ingress.kubernetes.io/ssl-redirect: "true"      # ★ HTTP→HTTPS 자동 리다이렉트
     nginx.ingress.kubernetes.io/proxy-body-size: "50m"
     nginx.ingress.kubernetes.io/proxy-read-timeout: "3600"
     nginx.ingress.kubernetes.io/proxy-send-timeout: "3600"
