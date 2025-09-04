@@ -25,4 +25,4 @@ spec:
 #   tls:
 #     {{- toYaml .Values.ingress.tls | nindent 2 }}
 #   {{- end }}
-# {{- end }}
+{{- end }}
